@@ -3,22 +3,22 @@
         <slot></slot>
         <span>{{value}}</span>
         <input 
-            :type="props.type"
-            :value="props.value"
-            :placeholder="placeholder"
+            :value="value"
+            :type="type"
+            :placeholder="placeholder" 
             :auto-Complete="autoComplete"
             :maxlength="maxlength"
             :class="clazz"
             :style="style"
             @input="onInput"
             @keyup="onKeyup"
-            @blur="onBlur"
+            @blur="onBlur" 
         >
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent,reactive,computed, onMounted } from 'vue'
+import { defineComponent,reactive,computed, onMounted, watch, watchEffect } from 'vue'
 
 export default defineComponent({
     name:'input',
@@ -33,7 +33,11 @@ export default defineComponent({
         },
         class:String,
         clazz:[String,Object],
-        style:undefined ,
+        // style:undefined ,
+        style:{
+            type:Object,
+            default:{}
+        },
         type:{
             type:String,
             default:'text'
@@ -46,12 +50,11 @@ export default defineComponent({
     },
     setup (props,{emit}) {
         const state = reactive({
-            value:'',
-            clas:'',
+            
         })
         onMounted(()=>{
             // state.clas = props.clazz + ' ';
-            console.log(props.clazz)
+            // console.log(JSON.parse(JSON.stringify(props)))
             // if(props.myClass){
             //     for (let k in props.myClass) {
             //         if (props.myClass[k]) {
@@ -67,12 +70,17 @@ export default defineComponent({
         const onKeyup = (e)=>{
             emit('keyup',e)
         }
-        const onBlur = (e)=>{
+        const onBlur = (e:any)=>{
             emit('blur',e)
         }
+        // watch(()=>props.value,(val)=>{
+        //     console.log(val)
+        // })
+        // watchEffect(()=>{
+        //     console.log(props)
+        // })
 
         return {
-            props,
             state,
             // value,
             onInput,

@@ -3,12 +3,11 @@
         <router-link to="/todoList">
             <span>{{state.title}}</span>
         </router-link>
-        <!-- clazz="myInput" v-model="state.userName"  -->
+        <!-- :clazz="state.mycla" clazz="myInput" v-model="state.userName"  -->
         <pc-input 
             type="text" 
             placeholder="输入内容"
             clazz="osg"
-            :clazz="state.mycla"
             style="color:red"
             :style="{marginTop:'30px'}"
             :autoComplete="true"
@@ -31,7 +30,7 @@ export default defineComponent({
     },
     setup (props,context) {
         const state = reactive({
-            title:'4354',
+            title:'todoList',
             userName:'',
             mycla:'age'
         })

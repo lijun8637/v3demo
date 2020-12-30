@@ -1,3 +1,4 @@
+// 在vue2中 data 在vue3中使用 reactive代替
 import { reactive, computed, toRefs} from 'vue'
 import {mapState} from 'vuex'
 
@@ -32,7 +33,7 @@ function todoList(){
     })
 
     // 修改待办状态
-    const handleChangeStatus = (item ,status) => {
+    const handleChangeStatus = (item:any ,status:boolean) => {
         item.done = status
     }
     
@@ -49,12 +50,18 @@ function todoList(){
         })
         state.todo = ''
     }
+    //子组件传递参数
+    const handleInput = (e:any)=>{
+        state.todo = e.target.value
+    }
     return {
+        // 使数据具备响应式
         ...toRefs(state),
         todos,
         dones,
         handleChangeStatus,
-        handleAddTodo
+        handleAddTodo,
+        handleInput
       }
 }
 
