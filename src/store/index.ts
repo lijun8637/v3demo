@@ -26,7 +26,7 @@ export default createStore({
         }
     },
     getters:{
-
+        todoList: state => state.todoList
     },
     mutations:{
         setTodoList:(state:any,payload:Array<object>):void => {

@@ -1,25 +1,27 @@
 // 在vue2中 data 在vue3中使用 reactive代替
-import { reactive, computed, toRefs} from 'vue'
-import {mapState} from 'vuex'
+import { reactive, computed, toRefs, onMounted, ref} from 'vue'
+import {mapState, mapMutations, useStore} from 'vuex'
+
+interface State {
+    todoList:Array<any>,
+    userName:any,
+    todo:string
+}
 
 function todoList(){
     // 通过reactive 可以初始化一个可响应的数据，与Vue2.0中的Vue.observer很相似
-    const state = reactive({
-        todoList: [{
-          id: 1,
-          done: false,
-          text: '吃饭'
-        },{
-          id: 2,
-          done: false,
-          text: '睡觉'
-        },{
-          id: 3,
-          done: false,
-          text: '打豆豆'
-        }],
+    let state:State;
+    const store = useStore();
+    state = reactive({
+        // todoList: computed(()=> store.state.todoList),
+        todoList: computed(()=> store.getters.todoList),
+        // todoList: computed(()=> mapState(['todoList']),
         todo: '',
-        userName: computed(()=> mapState(['userName']))
+        userName: computed(()=> store.state.userName)
+    })
+
+    onMounted(()=>{
+        
     })
     
     // 使用计算属性生成待办列表
@@ -43,12 +45,14 @@ function todoList(){
             alert('请输入待办事项')
             return
         }
-        state.todoList.push({
+        let arr = [...state.todoList]
+        arr.push({
             text: state.todo,
             id: Date.now(),
             done: false
         })
-        state.todo = ''
+        state.todo = '';
+        store.commit('setTodoList',arr);
     }
     //子组件传递参数
     const handleInput = (e:any)=>{
