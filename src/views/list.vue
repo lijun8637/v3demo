@@ -55,8 +55,8 @@ import { defineComponent,reactive, computed,Component, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import {mapState} from 'vuex'
 
-import todoList from './todoList'
-import forms from './form'
+import useTodoList from './useTodoList'
+import useForm from './useForm'
 
 import PcForm from '../components/PcForm.vue'
 import PcFormItem from '../components/PcFormItem.vue'
@@ -79,9 +79,9 @@ export default defineComponent({
         handleChangeStatus,
         handleAddTodo,
         handleInput
-      } = todoList();
+      } = useTodoList();
 
-    const {fName,handleSetName} = forms()
+    const {fName,handleSetName} = useForm()
     
 
     const handleKeyup = (e) => {
