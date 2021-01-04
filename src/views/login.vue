@@ -1,6 +1,8 @@
 <template>
     <div id="login">
-        <router-link to="/todoList">
+        <!-- <router-link :to="{name:'/list',params:{userId:2344}}"> -->
+        <!-- <router-link to="/todoList"> -->
+        <router-link :to="{path:'/todoList',query:{userId:2454}}">
             <span>{{state.title}}</span>
         </router-link>
         <!-- :clazz="state.mycla" clazz="myInput" v-model="state.userName"  -->
