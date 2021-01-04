@@ -26,11 +26,15 @@ export default createStore({
         }
     },
     getters:{
-        todoList: state => state.todoList
+        todoList: state => state.todoList,
+        userName: state => state.userName
     },
     mutations:{
         setTodoList:(state:any,payload:Array<object>):void => {
             state.todoList = payload
+        },
+        setUserName:(state:any,payload:string):void =>{
+            state.userName = payload
         }
     },
     actions:{

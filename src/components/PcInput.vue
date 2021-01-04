@@ -1,6 +1,9 @@
 <template>
     <div>
-        <slot></slot>
+        <!-- 匿名插槽 -->
+        <!-- <slot></slot> -->
+        <!-- 具名插槽 -->
+        <slot class="input-prepend" name="prepend"></slot>
         <span>{{value}}</span>
         <input 
             :value="value"
@@ -9,11 +12,12 @@
             :auto-Complete="autoComplete"
             :maxlength="maxlength"
             :class="clazz"
-            :style="style"
+            :style="styles"
             @input="onInput"
             @keyup="onKeyup"
             @blur="onBlur" 
-        >
+        />
+        <slot name="append"></slot>
     </div>
 </template>
 
@@ -21,7 +25,7 @@
 import { defineComponent,reactive,computed, onMounted, watch, watchEffect, ref, inject } from 'vue'
 
 export default defineComponent({
-    name:'input',
+    name:'PcInput',
     props:{
         value:{
             type:String,
@@ -34,7 +38,7 @@ export default defineComponent({
         class:String,
         clazz:[String,Object],
         // style:undefined ,
-        style:{
+        styles:{
             type:Object,
             default:{}
         },
@@ -62,11 +66,11 @@ export default defineComponent({
             
         })
 
-        const fval = inject<any>('fvalue')
+        const fval = inject<any>('fvalue',ref({}))
 
 
         onMounted(()=>{
-            console.log(fval)
+            // console.log(fval)
         })
         
         const valueRef = ref('')
@@ -90,10 +94,10 @@ export default defineComponent({
         
 
         const onInput = (e)=>{
-            emit('input',e)
+            emit('onInput',e)
         }
         const onKeyup = (e)=>{
-            emit('keyup',e)
+            emit('onKeyup',e)
         }
         const onBlur = (e:any)=>{
             emit('blur',e)

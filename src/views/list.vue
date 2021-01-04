@@ -5,22 +5,28 @@
       <label>待办事项</label>
        <input v-model="todo" placeholder="输入待办事项" @keyup.enter="handleAddTodo">
 
-       <pc-input 
+       <PcInput
         :value="todo"
-        placeholder="自定义组件"
-        @input="handleInput"
-        @keyup="handleKeyup"
-       />
+        placeholder="自定义input组件"
+        @onInput="handleInput"
+        @onKeyup="handleKeyup"
+        ref="myInput"
+        style="margin:20px auto"
+       >
+        <template v-slot:prepend><span>前缀</span></template>
+        <template v-slot:append><span>后缀</span></template>
+       </PcInput>
 
-       <pc-form fvalue="3535">
-         <pc-form-item label="自定义form表单">
-           <pc-input 
+       <PcForm fvalue="3535" style="margin:20px auto">
+         <PcFormItem label="自定义form表单">
+           <PcInput
             :value="fName"
             placeholder="自定义form表单" 
-           
+            @onInput="handleSetName"
+            ref="myFormInput"
            />
-         </pc-form-item>
-       </pc-form>
+         </PcFormItem>
+       </PcForm>
 
        <button @click="handleAddTodo">新增待办</button>
     </div>
@@ -75,7 +81,7 @@ export default defineComponent({
         handleInput
       } = todoList();
 
-    const {fName} = forms()
+    const {fName,handleSetName} = forms()
     
 
     const handleKeyup = (e) => {
@@ -92,7 +98,8 @@ export default defineComponent({
       handleInput,
       handleKeyup,
 
-      fName
+      fName,
+      handleSetName
     }
   }
 })

@@ -17,7 +17,7 @@ export default defineComponent({
     },
     setup () {
         
-        const fval = inject<any>('fvalue')
+        const fval = inject<any>('fvalue',ref({}))
 
         onMounted(()=>{
             console.log(fval)

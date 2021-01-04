@@ -13,11 +13,10 @@ function todoList(){
     let state:State;
     const store = useStore();
     state = reactive({
-        // todoList: computed(()=> store.state.todoList),
-        todoList: computed(()=> store.getters.todoList),
-        // todoList: computed(()=> mapState(['todoList']),
+        todoList: computed(()=> store.getters.todoList), // 响应式变更
+        // todoList: store.getters.todoList,
         todo: '',
-        userName: computed(()=> store.state.userName)
+        userName: computed(()=> store.getters.userName )
     })
 
     onMounted(()=>{
