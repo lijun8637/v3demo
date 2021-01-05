@@ -18,7 +18,7 @@
        </PcInput>
 
        <PcForm fvalue="3535" style="margin:20px auto">
-         <PcFormItem label="自定义form表单">
+         <PcFormItem label="自定义form表单：异步提交">
            <PcInput
             :value="fName"
             placeholder="自定义form表单" 
