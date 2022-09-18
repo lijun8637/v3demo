@@ -1,25 +1,45 @@
 # v3demo
 
-#### 介绍
-vue3 使用demo
-
-#### 软件架构
-软件架构说明
+npm init vue@latest // 安装并执行create-vue
 
 
-#### 安装教程
+## Project Setup
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```sh
+npm install
+```
 
-#### 使用说明
+### Compile and Hot-Reload for Development
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```sh
+npm run dev
+```
 
-#### 参与贡献
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+
+```sh
+npm run build
+npm run test:e2e # or `npm run test:e2e:ci` for headless testing
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
+
 
 ###
 "husky": {
